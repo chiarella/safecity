@@ -119,4 +119,9 @@ public class ReclamacaoService {
 		return opt;
 	}
 
+	public List<Reclamacao> findAll() {
+		
+		return (List<Reclamacao>) reclamacaoRepository.findAll();
+	}
+
 }

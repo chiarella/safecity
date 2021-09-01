@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.safecity.domain.Reclamacao;
 import br.com.safecity.errors.ErrorDTO;
 import br.com.safecity.errors.mapper.ErrorMapper;
 import br.com.safecity.exception.ReclamacaoException;
@@ -28,13 +30,20 @@ import br.com.safecity.request.ReclamacaoRequest;
 import br.com.safecity.response.ReclamacaoResponse;
 import br.com.safecity.service.ReclamacaoService;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/v1/reclamacoes")
 public class ReclamacaoController {
 
 	@Autowired
 	private ReclamacaoService reclamacaoService;
-
+	
+	@GetMapping(value = "reclamacoes")
+	public List<Reclamacao> getReclacacoes(){
+		return this.reclamacaoService.findAll();
+	}
+	
 	@GetMapping(value = "/{idReclamacao}")
 	public ResponseEntity<ReclamacaoResponse> reclamacaoByIdReclamacao(@PathVariable Long idReclamacao)
 			throws ReclamacaoException {

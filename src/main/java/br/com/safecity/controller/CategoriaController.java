@@ -55,7 +55,7 @@ public class CategoriaController {
 		}
 	}
 
-	@PostMapping
+	@PostMapping//(value = "/new")
 	public ResponseEntity<CategoriaResponse> novaCategoria(@Valid @RequestBody CategoriaRequest categoriaRequest)
 			throws CategoriaException {
 		categoriaService.create(categoriaRequest);
