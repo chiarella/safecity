@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.safecity.domain.Reclamacao;
 import br.com.safecity.errors.ErrorDTO;
 import br.com.safecity.errors.mapper.ErrorMapper;
 import br.com.safecity.exception.ReclamacaoException;
@@ -39,10 +38,10 @@ public class ReclamacaoController {
 	@Autowired
 	private ReclamacaoService reclamacaoService;
 	
-	@GetMapping(value = "reclamacoes")
-	public List<Reclamacao> getReclacacoes(){
-		return this.reclamacaoService.findAll();
-	}
+//	@GetMapping(value = "reclamacoes")
+//	public List<Reclamacao> getReclacacoes(){
+//		return this.reclamacaoService.findAll();
+//	}
 	
 	@GetMapping(value = "/{idReclamacao}")
 	public ResponseEntity<ReclamacaoResponse> reclamacaoByIdReclamacao(@PathVariable Long idReclamacao)
@@ -64,6 +63,7 @@ public class ReclamacaoController {
 			return ResponseEntity.noContent().build();
 		}
 	}
+	
 
 	@PostMapping
 	public ResponseEntity<Void> novaReclamacao(@Valid @RequestBody ReclamacaoRequest reclamacaoRequest)

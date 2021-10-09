@@ -49,8 +49,16 @@ public class ReclamacaoService {
 	public List<ReclamacaoResponse> buscaTodasReclamacoes() throws ReclamacaoException {
 		Iterable<Reclamacao> it = reclamacaoRepository.findAll();
 		return ReclamacaoMapper.INSTANCE
-				.listDomainToListResponse(StreamSupport.stream(it.spliterator(), false).collect(Collectors.toList()));
+				.listDomainToListResponse(StreamSupport.stream(it.spliterator(), false)
+						.collect(Collectors.toList()));
 	}
+	
+	//metodo 2 FUNCIONANDO 
+	public Iterable<Reclamacao> buscaTodasReclamacoes2() throws ReclamacaoException {
+		return reclamacaoRepository.findAll();
+	}
+	
+	
 
 	public void novaReclamacao(@Valid ReclamacaoRequest reclamacaoRequest) throws ReclamacaoException {
 		this.createReclamacao(reclamacaoRequest);
@@ -119,9 +127,9 @@ public class ReclamacaoService {
 		return opt;
 	}
 
-	public List<Reclamacao> findAll() {
-		
-		return (List<Reclamacao>) reclamacaoRepository.findAll();
-	}
+//	public List<Reclamacao> findAll() {
+//		
+//		return (List<Reclamacao>) reclamacaoRepository.findAll();
+//	}
 
 }

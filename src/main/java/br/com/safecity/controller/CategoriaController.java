@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ import br.com.safecity.request.CategoriaRequest;
 import br.com.safecity.response.CategoriaResponse;
 import br.com.safecity.service.CategoriaService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value =  "/v1/categorias")
 public class CategoriaController {
@@ -36,7 +38,8 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 
 	@GetMapping(value = "/{idCategoria}")
-	public ResponseEntity<CategoriaResponse> categoriaByIdCategoria(@PathVariable Long idCategoria) throws CategoriaException {
+	public ResponseEntity<CategoriaResponse> categoriaByIdCategoria(@PathVariable Long idCategoria) 
+			throws CategoriaException {
 		Optional<CategoriaResponse> optResponse = categoriaService.findByCategoria(idCategoria);
 		if (optResponse.isPresent()) {
 			return ResponseEntity.ok(optResponse.get());

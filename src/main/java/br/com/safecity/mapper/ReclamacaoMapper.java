@@ -22,6 +22,7 @@ public abstract class ReclamacaoMapper {
 
 	public static final ReclamacaoMapper INSTANCE = Mappers.getMapper(ReclamacaoMapper.class);
 	
+	
 	public abstract Reclamacao requestToDomain(ReclamacaoRequest request);
 	
 	@AfterMapping
@@ -29,9 +30,10 @@ public abstract class ReclamacaoMapper {
 		domain.setDataAtualizacao(LocalDateTime.now());
 		domain.setDataCadastro(LocalDate.now());
 	}
+
 	
 	public abstract ReclamacaoResponse domainToResponse(Reclamacao domain);
-	
+
 	public abstract List<ReclamacaoResponse> listDomainToListResponse(List<Reclamacao> listDomain);
 	
 	@Mappings({
@@ -64,6 +66,5 @@ public abstract class ReclamacaoMapper {
 			domain.getEndereco().setLogradouro(cep.getLogradouro());
 		}
 	}
-
 
 }

@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import br.com.safecity.domain.Categoria;
+
 @JsonRootName(value = "reclamacaoRequest")
 public class ReclamacaoRequest implements Serializable {
 
@@ -19,6 +21,7 @@ public class ReclamacaoRequest implements Serializable {
 	@JsonProperty(value = "idCategoria")
 	@NotNull(message = "O Identificador de categoria deve ser informado!")
 	private Long idCategoria;
+//	private Categoria categoria;
 
 	@JsonProperty(value = "titulo")
 	@NotNull(message = "O campo título da reclamação deve ser informado!")
@@ -49,6 +52,7 @@ public class ReclamacaoRequest implements Serializable {
 		this.idCategoria = idCategoria;
 	}
 
+	
 	public EnderecoRequest getEndereco() {
 		return endereco;
 	}
