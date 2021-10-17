@@ -42,6 +42,7 @@
   width: 50%;
   margin: 0px auto;
   float: none;
+  border: 1px solid black;
 }
 
 .Form{
@@ -49,3 +50,15 @@
   right: 25px;
 }
 
+.changeColor{
+  background: #332fa7;
+
+}
+
+.homeNav{
+  color: #F5FFFA;
+}
+
+th, tr,td{
+  border: 1px solid black;
+}
