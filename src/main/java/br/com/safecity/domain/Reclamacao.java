@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -17,6 +18,7 @@ public class Reclamacao extends BaseDocument implements Serializable {
 	private static final long serialVersionUID = 8073574692157208057L;
 
 	@Field(name = "idReclamacao")
+	@Indexed(unique = true)
 	private Long idReclamacao;
 
 	@Field(name = "titulo")
@@ -39,6 +41,17 @@ public class Reclamacao extends BaseDocument implements Serializable {
 
 	@Field(name = "usuarioAtualizacao")
 	private String usuarioAtualizacao;
+	
+	private String andersonA;
+
+	
+	public String getAndersonA() {
+		return andersonA;
+	}
+
+	public void setAndersonA(String andersonA) {
+		this.andersonA = andersonA;
+	}
 
 	public Long getIdReclamacao() {
 		return idReclamacao;
@@ -108,5 +121,24 @@ public class Reclamacao extends BaseDocument implements Serializable {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
 	}
+
+//	public Reclamacao(Long idReclamacao, String titulo, Long idCategoria, String descricaoReclamacao,
+//			LocalDate dataCadastro, Endereco endereco, LocalDateTime dataAtualizacao, String usuarioAtualizacao) {
+//		super();
+//		this.idReclamacao = idReclamacao;
+//		this.titulo = titulo;
+//		this.idCategoria = idCategoria;
+//		this.descricaoReclamacao = descricaoReclamacao;
+//		this.dataCadastro = dataCadastro;
+//		this.endereco = endereco;
+//		this.dataAtualizacao = dataAtualizacao;
+//		this.usuarioAtualizacao = usuarioAtualizacao;
+//	}
+//
+//	public Reclamacao() {
+//		super();
+//	}
+//	
+	
 
 }

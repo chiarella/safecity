@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(value = "categoria")
-public class Categoria extends BaseDocument implements Serializable {
+//@Document(value = "categoria")
+//public class Categoria extends BaseDocument implements Serializable {
+public class Categoria implements Serializable {
 
 	/**
 	 * 
@@ -78,4 +78,22 @@ public class Categoria extends BaseDocument implements Serializable {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
 	}
+	
+	
+
+//	public Categoria() {
+//		super();
+//	}
+//
+//	public Categoria(Long idCategoria, String descricaoCategoria, LocalDate dataCadastro, LocalDateTime dataAtualizacao,
+//			String usuarioAtualizacao) {
+//		super();
+//		this.idCategoria = idCategoria;
+//		this.descricaoCategoria = descricaoCategoria;
+//		this.dataCadastro = dataCadastro;
+//		this.dataAtualizacao = dataAtualizacao;
+//		this.usuarioAtualizacao = usuarioAtualizacao;
+//	}
+	
+	
 }

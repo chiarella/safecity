@@ -30,4 +30,6 @@ public abstract class CategoriaMapper {
 
 	public abstract List<CategoriaResponse> listDomainToListResponse(List<Categoria> listDomain);
 
+
+	
 }

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,15 +29,23 @@ import br.com.safecity.request.ReclamacaoRequest;
 import br.com.safecity.response.ReclamacaoResponse;
 import br.com.safecity.service.ReclamacaoService;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(value ="/v1/reclamacoes")
+@RequestMapping(value = "/v1/reclamacoes")
 public class ReclamacaoController {
 
 	@Autowired
 	private ReclamacaoService reclamacaoService;
-
+	
+//	@GetMapping(value = "reclamacoes")
+//	public List<Reclamacao> getReclacacoes(){
+//		return this.reclamacaoService.findAll();
+//	}
+	
 	@GetMapping(value = "/{idReclamacao}")
-	public ResponseEntity<?> reclamacaoByIdReclamacao(@PathVariable Long idReclamacao) throws ReclamacaoException {
+	public ResponseEntity<ReclamacaoResponse> reclamacaoByIdReclamacao(@PathVariable Long idReclamacao)
+			throws ReclamacaoException {
 		Optional<ReclamacaoResponse> optResponse = reclamacaoService.findByReclamacao(idReclamacao);
 		if (optResponse.isPresent()) {
 			return ResponseEntity.ok(optResponse.get());
@@ -46,7 +55,7 @@ public class ReclamacaoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<?> todasReclamacoes() throws ReclamacaoException {
+	public ResponseEntity<List<ReclamacaoResponse>> todasReclamacoes() throws ReclamacaoException {
 		List<ReclamacaoResponse> listResponse = reclamacaoService.buscaTodasReclamacoes();
 		if (listResponse != null && !listResponse.isEmpty()) {
 			return ResponseEntity.ok(listResponse);
@@ -54,29 +63,30 @@ public class ReclamacaoController {
 			return ResponseEntity.noContent().build();
 		}
 	}
+	
 
 	@PostMapping
-	public ResponseEntity<?> novaReclamacao(@Valid @RequestBody ReclamacaoRequest reclamacaoRequest)
+	public ResponseEntity<Void> novaReclamacao(@Valid @RequestBody ReclamacaoRequest reclamacaoRequest)
 			throws ReclamacaoException {
 		reclamacaoService.novaReclamacao(reclamacaoRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
+	@PutMapping(value = "/{idReclamacao}")
+	public ResponseEntity<Void> atualizaReclamacao(@Valid @RequestBody ReclamacaoRequest reclamacaoRequest,
+			@PathVariable Long idReclamacao) throws ReclamacaoException {
+		reclamacaoService.atualizaReclamacao(reclamacaoRequest, idReclamacao);
+		return ResponseEntity.ok().build();
+	}
+	
 	@DeleteMapping(value = "/{idReclamacao}")
-	public ResponseEntity<?> excluiReclamacao(@PathVariable Long idReclamacao) throws ReclamacaoException {
+	public ResponseEntity<Void> excluiReclamacao(@PathVariable Long idReclamacao) throws ReclamacaoException {
 		long result = reclamacaoService.excluiReclamacao(idReclamacao);
 		if (result > 0) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.noContent().build();
 		}
-	}
-
-	@PutMapping(value = "/{idReclamacao}")
-	public ResponseEntity<?> atualizaReclamacao(@Valid @RequestBody ReclamacaoRequest reclamacaoRequest,
-			@PathVariable Long idReclamacao) throws ReclamacaoException {
-		reclamacaoService.atualizaReclamacao(reclamacaoRequest, idReclamacao);
-		return ResponseEntity.ok().build();
 	}
 
 	@ExceptionHandler(ReclamacaoException.class)
