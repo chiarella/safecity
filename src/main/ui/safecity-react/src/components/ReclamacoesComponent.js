@@ -28,9 +28,8 @@ class ReclamacoesComponent extends React.Component{
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button className="btnAdcCat" color="success" tag={Link} to="/categorias/new"><FaPlus/> Categoria</Button>
                         <Button className="btnAdcCat" color="success" tag={Link} to="/reclamacoes/new"><FaPlus/> Categoria</Button>
-                        <button className="btnBackCat" size="sm"><Link to="/"><FaReply /> Voltar</Link></button>
+                        <Button className="btnBackCat2" color="info" tag={Link} to="/"><FaReply /> Voltar</Button>
                     </div>
                     <h4 className = "text-center"> Lista de reclamações</h4><br/>
 

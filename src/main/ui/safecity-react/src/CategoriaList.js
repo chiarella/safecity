@@ -72,7 +72,7 @@ render() {
             <Container fluid>
                 <div className="float-right">
                     <Button className="btnAdcCat" color="success" tag={Link} to="/categorias/new"><FaPlus/> Categoria</Button>
-                    <button className="btnBackCat" size="sm"><Link to="/"><FaReply /> Voltar</Link></button>
+                    <Button className="btnBackCat2" color="info" tag={Link} to="/"><FaReply /> Voltar</Button>
                 </div>
                 <h3>Categoria</h3>
                 <Table className="mt-4">
