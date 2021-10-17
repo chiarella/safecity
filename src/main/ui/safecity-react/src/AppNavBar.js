@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, NavbarBrand} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import {FaAlignJustify} from "react-icons/fa";
 
 export default class AppNavbar extends Component {
     constructor(props) {
@@ -16,10 +17,12 @@ export default class AppNavbar extends Component {
     }
 
     render() {
-        return <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
-        </Navbar>;
+        return <Navbar className="changeColor">
+            <NavbarBrand className="homeNav" tag={Link} to="/"><FaAlignJustify /> Home</NavbarBrand>
+        </Navbar>
+            ;
     }
 }
+
 
 

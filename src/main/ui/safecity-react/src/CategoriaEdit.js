@@ -86,8 +86,8 @@ class CategoriaEdit extends Component {
                     </FormGroup>
 
                     <FormGroup>
-                        <Button color="primary" type="submit">Salvar</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/categorias">Cancelar</Button>
+                        <Button color="primary" className="btnAdcCat" type="submit">Salvar</Button>{' '}
+                        <Button color="secondary" className="btnAdcCat" tag={Link} to="/categorias">Cancelar</Button>
                     </FormGroup>
                 </Form>
             </Container>

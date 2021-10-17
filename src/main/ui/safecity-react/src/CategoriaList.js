@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import AppNavbar from './AppNavBar';
 import { Link } from 'react-router-dom';
 import { ButtonGroup, Container, Button, Table } from 'reactstrap';
+import {
+    FaAlignJustify,
+    FaBeer,
+    FaCog,
+    FaEdit,
+    FaFilter,
+    FaMicrophoneAlt,
+    FaReply,
+    FaSearch,
+    FaTrash
+} from 'react-icons/fa';
+import {FaPlus} from "react-icons/all";
 //import AppNavbar from './AppNavBar';
 
 class CategoriaList extends Component{
@@ -47,8 +59,8 @@ render() {
           
             <td>
                 <ButtonGroup>
-                    <Button size="sm" color="primary" tag={Link} to={"/categorias/" + categoria.idCategoria}>Edit</Button>
-                    <Button size="sm" color="danger" onClick={() => this.remove(categoria.idCategoria)}>Apagar</Button>
+                    <Button className="actionCat" size="sm" color="primary" tag={Link} to={"/categorias/" + categoria.idCategoria}><FaEdit/> Edit</Button>
+                    <Button className="actionCat" size="sm" color="danger" onClick={() => this.remove(categoria.idCategoria)}><FaTrash/> Excluir</Button>
                 </ButtonGroup>
             </td>
         </tr>
@@ -59,15 +71,16 @@ render() {
             <AppNavbar/>
             <Container fluid>
                 <div className="float-right">
-                    <Button color="success" tag={Link} to="/categorias/new">Adicionar Categoria</Button>
+                    <Button className="btnAdcCat" color="success" tag={Link} to="/categorias/new"><FaPlus/> Categoria</Button>
+                    <button className="btnBackCat" size="sm"><Link to="/"><FaReply /> Voltar</Link></button>
                 </div>
                 <h3>Categoria</h3>
                 <Table className="mt-4">
                     <thead>
-                    <tr>
-                        <th width="30%">Descrição:</th>       
-                        <th width="40%">Ações:</th>
-                    </tr>
+                        <tr>
+                            <th width="30%">Descricão Categoria</th>
+                            <th width="40%"></th>
+                        </tr>
                     </thead>
                     <tbody>
                     {categoriaList}
